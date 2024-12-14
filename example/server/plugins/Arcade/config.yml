@@ -1,6 +1,6 @@
 webServer: http://web-server:1000/
 serverstatus:
-  name: Testing Server
+  name: Arcade-1
   us: true
   group: Arcade
   connectionurl: mariadb:3306

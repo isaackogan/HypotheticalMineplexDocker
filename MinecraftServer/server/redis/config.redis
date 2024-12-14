@@ -15,7 +15,7 @@ HSET servergroups.Arcade maxPlayers 48
 HSET servergroups.Arcade pvp true
 HSET servergroups.Arcade tournament false
 HSET servergroups.Arcade tournamentPoints false
-HSET servergroups.Arcade hardMaxPlayerCap true
+HSET servergroups.Arcade hardMaxPlayerCap false
 HSET servergroups.Arcade games "BaconBrawl"
 HSET servergroups.Arcade modes ""
 HSET servergroups.Arcade boosterGroup "BoosterTesting"
