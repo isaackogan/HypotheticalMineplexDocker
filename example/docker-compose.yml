@@ -13,7 +13,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - './mariadb_data:/var/lib/mysql'
+      - './db/mariadb_data:/var/lib/mysql'
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 5s
