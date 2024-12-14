@@ -52,7 +52,7 @@ services:
   ###############################
   mineplex-server:
     container_name: mineplex-server
-    image: isaackogan/mineplex-arcade-server:v0.0.1
+    image: isaackogan/mineplex-arcade-server:v0.0.2
 
     # docker attach mineplex-server
     # /whitelist off
