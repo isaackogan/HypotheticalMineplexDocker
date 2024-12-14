@@ -1,0 +1,8 @@
+webServer: http://web-server:1000/
+serverstatus:
+  name: Testing Server
+  us: true
+  group: Arcade
+  connectionurl: mariadb:3306
+  username: root
+  password: root

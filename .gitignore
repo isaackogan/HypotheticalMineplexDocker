@@ -1,0 +1,10 @@
+.idea
+Arcade.jar
+server/mineplex/plugins/Arcade.jar
+example/db
+example/server/maps/*
+!example/server/maps/.gitkeep
+worldedit-bukkit-6.1.jar
+PluginMetrics
+WorldEdit
+craftbukkit.jar

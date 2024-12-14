@@ -1,0 +1,94 @@
+services:
+
+  ###############################
+  #           MariaDB           #
+  ###############################
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - './db/mariadb_data:/var/lib/mysql'
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  ###############################
+  #            Redis            #
+  ###############################
+  redis:
+    image: redis:latest
+    volumes:
+      - './db/redis_data:/data'
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+  ###############################
+  #         Web Server          #
+  ###############################
+  web-server:
+    image: web-server:v0.0.1
+    environment:
+      PORT: 1000
+      ACCOUNT_DB_URI: 'mysql://root:root@mariadb:3306/account'
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  ###############################
+  #       Minecraft Server      #
+  ###############################
+  mineplex-server:
+    container_name: mineplex-server
+    image: mineplex-server:v0.1.3
+
+    # docker attach mineplex-server
+    # /whitelist off
+    stdin_open: true
+    tty: true
+    environment:
+      MARIADB_HOST: mariadb
+      MARIADB_PORT: 3306
+      MARIADB_USER: root
+      MARIADB_PASSWORD: root
+      REDIS_URI: 'redis://redis:6379'
+    ports:
+      - "25565:25565"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - './db/marker_data:/home/mineplex/markers'
+      - './server/maps:/home/mineplex/update/maps'
+      - './server/craftbukkit:/home/mineplex/server/mineplex/craftbukkit'
+      - './server/plugins:/home/mineplex/server/mineplex/plugins'
+      - './server/plugins/Arcade:/home/mineplex/server/mineplex/plugins/Arcade'
+  redis-proxy:
+    image: alpine/socat
+    command: tcp-listen:6379,fork,reuseaddr tcp-connect:redis:6379
+    depends_on:
+      - redis
+    network_mode: service:mineplex-server
+  mariadb-proxy:
+    image: alpine/socat
+    command: tcp-listen:3306,fork,reuseaddr tcp-connect:mariadb:3306
+    depends_on:
+      - mariadb
+    network_mode: service:mineplex-server
+  web-server-proxy:
+    image: alpine/socat
+    command: tcp-listen:1000,fork,reuseaddr tcp-connect:web-server:1000
+    depends_on:
+      - web-server
+    network_mode: service:mineplex-server
