@@ -28,3 +28,12 @@ All other files you need are in the [./example](example) directory, as well as [
 5. To edit ranks, expose your MariaDB port and edit freely in the `accountranks` table.
 6. One of the generated folders will be `maps`. In this folder, place the maps you have LEGALLY OBTAINED. The format is `maps/Bacon Brawl/Bacon_Lava.zip` (repeat for other game types)
 7. Restart the server with your maps and you should be good to go.
+
+> [!INFORMATION]  
+> If you have issues with files not being found, it's time for the good old `chmod -R 777 db`...it's a perms issue.
+
+### Basic Commands
+
+- `/sethost <name>` - Set the host (enables `/menu`)
+
+
