@@ -26,12 +26,12 @@ fastify.post('/chat/*', {
     body: {
       type: 'object',
       properties: {
-        _playerName: { type: 'string' },
-        _uuid: { type: 'string' },
-        _region: { type: 'string' },
-        _server: { type: 'string' },
-        _message: { type: 'string' },
-        _time: { type: 'integer' },
+        _playerName: {type: 'string'},
+        _uuid: {type: 'string'},
+        _region: {type: 'string'},
+        _server: {type: 'string'},
+        _message: {type: 'string'},
+        _time: {type: 'integer'},
       }
     }
   }
@@ -53,17 +53,18 @@ fastify.post('/PlayerAccount/GetAccount', {
 });
 
 fastify.post('/PlayerAccount/Login', {
-  schema: {
-    body: {
-      type: 'object',
-      properties: {
-        MacAddress: { type: 'string' },
-        IpAddress: { type: 'string' },
-        Name: { type: 'string' },
-        Uuid: { type: 'string' },
-      }    }
-  }
-},
+    schema: {
+      body: {
+        type: 'object',
+        properties: {
+          MacAddress: {type: 'string'},
+          IpAddress: {type: 'string'},
+          Name: {type: 'string'},
+          Uuid: {type: 'string'},
+        }
+      }
+    }
+  },
   async (request, reply) => {
     const connection = await fastify.mysql.getConnection()
 
@@ -133,13 +134,13 @@ fastify.post('/PlayerAccount/Punish', {
     body: {
       type: 'object',
       properties: {
-        Target: { type: 'string' },
-        Category: { type: 'string' },
-        Sentence: { type: 'string' },
-        Reason: { type: 'string' },
-        Duration: { type: 'integer' },
-        Admin: { type: 'string' },
-        Severity: { type: 'integer' },
+        Target: {type: 'string'},
+        Category: {type: 'string'},
+        Sentence: {type: 'string'},
+        Reason: {type: 'string'},
+        Duration: {type: 'integer'},
+        Admin: {type: 'string'},
+        Severity: {type: 'integer'},
       }
     }
   }
@@ -157,10 +158,10 @@ fastify.post('/PlayerAccount/RemovePunishment', {
     body: {
       type: 'object',
       properties: {
-        PunishmentId: { type: 'integer' },
-        Target: { type: 'string' },
-        Reason: { type: 'string' },
-        Admin: { type: 'string' },
+        PunishmentId: {type: 'integer'},
+        Target: {type: 'string'},
+        Reason: {type: 'string'},
+        Admin: {type: 'string'},
       }
     }
   }
@@ -174,9 +175,9 @@ fastify.post('/PlayerAccount/GemReward', {
     body: {
       type: 'object',
       properties: {
-        Source: { type: 'string' },
-        Name: { type: 'string' },
-        Amount: { type: 'integer' },
+        Source: {type: 'string'},
+        Name: {type: 'string'},
+        Amount: {type: 'integer'},
       }
     }
   }
@@ -190,9 +191,9 @@ fastify.post('/PlayerAccount/CoinReward', {
     body: {
       type: 'object',
       properties: {
-        Source: { type: 'string' },
-        Name: { type: 'string' },
-        Amount: { type: 'integer' },
+        Source: {type: 'string'},
+        Name: {type: 'string'},
+        Amount: {type: 'integer'},
       }
     }
   }
@@ -206,9 +207,9 @@ fastify.post('/PlayerAccount/PurchaseKnownSalesPackage', {
     body: {
       type: 'object',
       properties: {
-        AccountName: { type: 'string' },
-        UsingCredits: { type: 'boolean' },
-        SalesPackageId: { type: 'integer' },
+        AccountName: {type: 'string'},
+        UsingCredits: {type: 'boolean'},
+        SalesPackageId: {type: 'integer'},
       }
     }
   }
@@ -270,11 +271,11 @@ fastify.post('/PlayerAccount/purchaseUnknownSalesPackage', {
     body: {
       type: 'object',
       properties: {
-        AccountName: { type: 'string' },
-        SalesPackageName: { type: 'string' },
-        CoinPurchase: { type: 'string' },
-        Cost: { type: 'integer' },
-        Premium: { type: 'boolean' },
+        AccountName: {type: 'string'},
+        SalesPackageName: {type: 'string'},
+        CoinPurchase: {type: 'string'},
+        Cost: {type: 'integer'},
+        Premium: {type: 'boolean'},
       }
     }
   }
