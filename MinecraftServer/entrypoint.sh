@@ -104,5 +104,4 @@ cp -rp $WORLD_TEMPLATE $WORLD_FOLDER
 
 # Start the server
 cd "$SERVER_WORKING_DIR"
-chmod +x "$CRAFTBUKKIT_JAR_FP"
 java -Xms"$MINIMUM_MEMORY" -Xmx"$MAXIMUM_MEMORY" -jar "$CRAFTBUKKIT_JAR_FP" nogui
